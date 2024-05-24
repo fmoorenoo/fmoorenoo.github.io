@@ -1,5 +1,5 @@
 :root {
-    --bg_main: #0a1f44; 
+    --bg_main: #0a1f44;
     --text_light: #fff;
     --text_med: #53627c;
     --text_dark: #1e2432;
@@ -67,13 +67,7 @@ button {
 button:hover {
     background-color: var(--darkred);
 }
-span {
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    color: var(--red);
-    margin-left: 70px;
-}
+
 /* Resultados */
 #cards {
     margin-top: 32px;
@@ -112,6 +106,13 @@ span {
 .card figcaption {
     font-size: 1.2rem;
     color: var(--text_med);
+}
+span {
+    color: var(--red);
+    display: flex;
+    align-self: center;
+    margin-left: 15px;
+    font-weight: bold;
 }
 
 footer {

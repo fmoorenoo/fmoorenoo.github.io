@@ -1,12 +1,8 @@
-"use strict" 
+"use strict"
 
-document.getElementById("search-button").addEventListener("click", consultarAPI);
-
-document.getElementById("place-input").addEventListener("keypress", function(enter) {
-    if (enter.key === "Enter") {
-        enter.preventDefault();
-        consultarAPI();
-    }
+document.getElementById("buscador").addEventListener("submit", function(event) {
+    event.preventDefault();
+    consultarAPI();
 });
 
 function consultarAPI() {
@@ -26,19 +22,20 @@ function mostrarInformacion(xhr) {
     let obj, city, temp, wheather, pais, tarjeta, icon, mensaje;
     obj = JSON.parse(xhr.responseText);
     if (obj.cod == "404") {
-        mensaje = "Error: " + obj.message
+        mensaje = obj.message
         document.getElementById("msg").innerHTML = mensaje
     }
     else {
-        document.getElementById("msg").innerHTML = ""
-        city = obj.name;
-        temp = String(Math.round(obj.main.temp));
-        console.log(temp)
-        wheather = obj.weather[0].description;
-        pais = obj.sys.country;
-        icon = obj.weather[0].icon;
-        tarjeta = "<div class='card'><h2 class='city-name'>"+ city + "<sup>"+ pais + "</sup></h2>" + "<p class='city-temp'>" + temp + "<sup>ºC</sup></p><figure>";
-        tarjeta += "<img src='https://openweathermap.org/img/wn/" + icon + ".png' alt=''>" + "<figcaption>" + wheather + "</figcaption></figure></div>";
-        document.getElementById("cards").innerHTML += tarjeta;
+    city = obj.name;
+    temp = String(Math.round(obj.main.temp));
+    wheather = obj.weather[0].description;
+    pais = obj.sys.country;
+    icon = obj.weather[0].icon;
+    tarjeta = "<div class='card'><h2 class='city-name'>"+ city + "<sup>"+ pais + "</sup></h2>";
+    tarjeta += "<p class='city-temp'>" + temp + "<sup>ºC</sup></p><figure>";
+    tarjeta += "<img src='https://openweathermap.org/img/wn/" + icon + ".png' alt=''>";
+    tarjeta += "<figcaption>" + wheather + "</figcaption></figure></div>";
+    document.getElementById("cards").innerHTML += tarjeta;
+    document.getElementById("msg").innerHTML = ""
     }
 }
